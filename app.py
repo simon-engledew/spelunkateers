@@ -6,6 +6,7 @@ import time
 import base64
 import binascii
 import os
+import time
 
 def to_isodate(value):
     return value.strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -19,15 +20,15 @@ class DateEncoder(json.JSONEncoder):
 app = flask.Flask(__name__)
 app.json_encoder = DateEncoder
 
-def token(bytes=32):
-    return base64.urlsafe_b64encode(os.urandom(bytes))
+def now():
+    return str(int(time.time()))
 
 def static(path):
     return flask.url_for('static', filename=path, cache=str(int(os.stat(os.path.join(app.static_folder, path)).st_mtime)))
 
 @app.context_processor
 def functions():
-    return {'token': token, 'static': static}
+    return {'now': now, 'static': static}
 
 @app.route('/')
 def root():
