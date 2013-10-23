@@ -1,6 +1,6 @@
+@import 'lesshat';
 @import url(http://fonts.googleapis.com/css?family=Arvo);
 
-/*
 @-webkit-keyframes pan-down {
   0 {
     background-position: 0 0;
@@ -9,17 +9,6 @@
     background-position: 0 -338px;
   }
 }
-*/
-
-@-webkit-keyframes pan-down {
-  0 {
-    -webkit-transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(0, -338px);
-  }
-}
-
 
 @-webkit-keyframes jiggle {
   0 {
@@ -58,14 +47,14 @@ header h1 {
     @base: rgb(32, 160, 214);
     color: #fff;
     background: rgb(32, 160, 214);
-    background: linear-gradient(rgb(32, 160, 214) 0, darken(rgb(32, 160, 214), 5%) 100%);
+    .gradient(~'linear-gradient(0, rgb(32, 160, 214) 0, darken(rgb(32, 160, 214), 5%) 100%)');
     border-left: solid 5px darken(rgba(32, 160, 214, 1), 5%);
     font-weight: 800;
     display: inline-block;
     font-size: 24pt;
     font-family: Arvo;
     text-shadow: 0 1px 1px rgba(0, 0, 100, 0.3);
-    box-shadow: 0 0 50px rgba(0, 0, 100, 0.3);
+    .box-shadow(~'0 0 50px rgba(0, 0, 100, 0.3)');
     padding: 10px 20px 10px 10px;
     margin: 0 auto;
     img {
@@ -77,6 +66,8 @@ header h1 {
 }
 
 .character {
+    .border-radius(5px);
+    cursor: pointer;
     display: inline-block;
     background: 0 0 no-repeat;
     min-height: 150px;
@@ -84,29 +75,20 @@ header h1 {
     text-align: center;
     border: solid 1px #111;
     position: relative;
-    box-shadow: 0 0 20px rgba(0, 0, 100, 0.3);
-}
-.meatboy {
-    background-image: url('/static/images/XBLA_C11.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
-}
-.robot {
-    background-image: url('/static/images/XBLA_C19.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
-}
-.viking {
-    background-image: url('/static/images/XBLA_C18.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
-}
-.character {
-    cursor: pointer;
+    .box-shadow(~'0 0 20px rgba(0, 0, 100, 0.3)');
+
     label {
+        .border-radius(5px 5px 0 0);
         position: absolute;
         display: block;
         font-family: Arvo;
         padding: 5px;
-        box-sizing: border-box;
+        .user-select(none);
+        .box-sizing(border-box);
         text-align: center;
         width: 100%;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-        background: linear-gradient(0, rgba(251, 251, 251, 0.5) 0, rgba(237, 237, 237, 1) 100%);
+        .gradient(~'linear-gradient(0, rgba(251, 251, 251, 0.5) 0, rgba(237, 237, 237, 1) 100%)');
     }
     a {
         position: absolute;
@@ -116,8 +98,18 @@ header h1 {
         right: 0;
         font-family: Arvo;
         color: #fff;
-        padding: 2px;
+        padding: 2px 4px;
     }
+}
+
+.meatboy {
+    background-image: url('/static/images/XBLA_C11.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+}
+.robot {
+    background-image: url('/static/images/XBLA_C19.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+}
+.viking {
+    background-image: url('/static/images/XBLA_C18.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
 }
 
 body > table {
