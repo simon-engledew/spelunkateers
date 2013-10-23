@@ -1,0 +1,121 @@
+@import url(http://fonts.googleapis.com/css?family=Arvo);
+
+@-webkit-keyframes pan-down {
+  0 {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 -338px;
+  }
+}
+
+@-webkit-keyframes jiggle {
+  0 {
+    -webkit-transform: rotate(0deg);
+  }
+  1% {
+    -webkit-transform: rotate(45deg);
+  }
+  2% {
+    -webkit-transform: rotate(0deg);
+  }
+  3% {
+    -webkit-transform: rotate(-45deg);
+  }
+  4% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+html {
+    background: url('ice-tiles.jpg') repeat;
+    // -webkit-animation: pan-down 15s infinite linear;
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+header h1 {
+    @base: rgb(32, 160, 214);
+    color: #fff;
+    background: rgb(32, 160, 214);
+    background: linear-gradient(rgb(32, 160, 214) 0, darken(rgb(32, 160, 214), 5%) 100%);
+    border-left: solid 5px darken(rgba(32, 160, 214, 1), 5%);
+    font-weight: 800;
+    display: inline-block;
+    font-size: 24pt;
+    font-family: Arvo;
+    text-shadow: 0 1px 1px rgba(0, 0, 100, 0.3);
+    box-shadow: 0 0 50px rgba(0, 0, 100, 0.3);
+    padding: 10px 20px 10px 10px;
+    margin: 0 auto;
+    img {
+        height: 1em;
+        vertical-align: text-top;
+        margin-right: 10px;
+        -webkit-animation: jiggle 15s infinite ease-in;
+    }
+}
+
+.character {
+    display: inline-block;
+    background: 0 0 no-repeat;
+    min-height: 150px;
+    min-width: 150px;
+    text-align: center;
+    border: solid 1px #111;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 100, 0.3);
+}
+.meatboy {
+    background-image: url('XBLA_C11.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+}
+.robot {
+    background-image: url('XBLA_C19.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+}
+.viking {
+    background-image: url('XBLA_C18.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+}
+.character {
+    cursor: pointer;
+    label {
+        position: absolute;
+        display: block;
+        font-family: Arvo;
+        padding: 5px;
+        box-sizing: border-box;
+        text-align: center;
+        width: 100%;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+        background: linear-gradient(0, rgba(251, 251, 251, 0.5) 0, rgba(237, 237, 237, 1) 100%);
+    }
+    a {
+        position: absolute;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #111;
+        bottom: 0;
+        right: 0;
+        font-family: Arvo;
+        color: #fff;
+        padding: 2px;
+    }
+}
+
+body > table {
+    width: 100%;
+    height: 100%;
+    td {
+        vertical-align: middle;
+        text-align: center;
+        .character {
+            margin: 0 auto;
+        }
+    }
+}
