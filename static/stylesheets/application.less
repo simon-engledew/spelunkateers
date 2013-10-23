@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Arvo);
 
+/*
 @-webkit-keyframes pan-down {
   0 {
     background-position: 0 0;
@@ -8,6 +9,17 @@
     background-position: 0 -338px;
   }
 }
+*/
+
+@-webkit-keyframes pan-down {
+  0 {
+    -webkit-transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(0, -338px);
+  }
+}
+
 
 @-webkit-keyframes jiggle {
   0 {
@@ -28,7 +40,7 @@
 }
 
 html {
-    background: url('ice-tiles.jpg') repeat;
+    background: url('/static/images/ice-tiles.jpg') repeat;
     // -webkit-animation: pan-down 15s infinite linear;
     height: 100%;
 }
@@ -75,13 +87,13 @@ header h1 {
     box-shadow: 0 0 20px rgba(0, 0, 100, 0.3);
 }
 .meatboy {
-    background-image: url('XBLA_C11.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+    background-image: url('/static/images/XBLA_C11.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
 }
 .robot {
-    background-image: url('XBLA_C19.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+    background-image: url('/static/images/XBLA_C19.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
 }
 .viking {
-    background-image: url('XBLA_C18.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
+    background-image: url('/static/images/XBLA_C18.png'), -webkit-radial-gradient(50% 50%, circle, #000, #444);
 }
 .character {
     cursor: pointer;

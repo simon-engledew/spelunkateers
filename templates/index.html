@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" />
-<link rel="stylesheet/less" type="text/css" href="application.less?{{ token() }}" />
-<script src="less.min.js" type="text/javascript"></script>
+    <meta name="author" content="Simon Engledew">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" />
+    <link rel="stylesheet/less" type="text/css" href="{{ static('stylesheets/application.less') }}" />
+    <script src="/static/javascripts/less.min.js" type="text/javascript"></script>
 </head>
 <body>
     <header>
-        <h1><img src="head.png" />Spelunkateers Daily Challenge</h1>
+        <h1><img src="/static/images/head.png" />Spelunkateers Daily Challenge</h1>
     </header>
     <table>
         <tbody>
@@ -18,26 +20,24 @@
             </tr>
         </tbody>
     </table>
-    <script src='/feed.json' type='text/javascript'></script>
-    <script src='/wgxpath.install.js' type='text/javascript'></script>
-    <script src='/events.min.js' type='text/javascript'></script>
-    <script src='/bonzo.min.js' type='text/javascript'></script>
+    <script src='/feed.json?{{ token() }}' type='text/javascript'></script>
+
+    <script src='/static/javascripts/events.min.js' type='text/javascript'></script>
+    <script src='/static/javascripts/bonzo.min.js' type='text/javascript'></script>
+
     <script src='//cdnjs.cloudflare.com/ajax/libs/sizzle/1.10.9/sizzle.min.js' type='text/javascript'></script>
     <script src='//cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js' type='text/javascript'></script>
     <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js' type='text/javascript'></script>
-    <script type='text/javascript'>
-        wgxpath.install()
 
+    <script type='text/javascript'>
         String.format = function()
         {
           var replacements = arguments;
           return arguments[0].replace(/\{(\d+)\}/gm, function(string, match) { return replacements[parseInt(match) + 1] });
         }
-        function xpath(expression) {
-            return document.evaluate(expression, document).iterateNext();
-        }
 
-        _.each(_.groupBy(_.sortBy(_.filter(data.entries,
+        _.each(_.groupBy(_.sortBy(_.filter(
+            data.entries,
             function filter(entry) {
                 return entry.title.indexOf('Spelunkateers -') == 0;
             }),
@@ -50,9 +50,10 @@
             }),
             function each(entries, name) {
                 entry = _.last(entries);
-                element = xpath(String.format('//label[text()="{0}"]/../a', name));
+                element = _.first(Sizzle(String.format(".character > label:contains({0})", name), document));
                 if (element) {
-                    element = bonzo(element);
+                    element = _.first(bonzo(element).parent());
+                    element = bonzo(_.first(Sizzle('a', element)));
                     element.text(entry.updated.toString('dd/MM'));
                     element.attr('href', entry.link);
                 }
@@ -67,6 +68,7 @@
                     }
                 });
         });
+
 
     </script>
 </body>
